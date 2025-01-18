@@ -1,4 +1,4 @@
-import { NextResponse } from "next/server";
+import { NextRequest, NextResponse } from "next/server";
 import pdfParse from "pdf-parse";
 import OpenAI from "openai";
 
@@ -8,10 +8,11 @@ const openai = new OpenAI({
   apiKey: process.env.OPENAI_API_KEY,
 });
 
-export async function POST(req: Request) {
+export async function POST(req: NextRequest) {
   try {
     const formData = await req.formData();
     const file = formData.get("file") as File | null;
+    console.log(file)
 
     if (!file) {
       return NextResponse.json({ error: "No file uploaded" }, { status: 400 });
