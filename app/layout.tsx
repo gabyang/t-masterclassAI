@@ -50,6 +50,12 @@ export default function RootLayout({
         <Providers themeProps={{ attribute: "class", defaultTheme: "dark" }}>
           <main className="relative flex flex-col h-screen w-screen">
             <NavBar />
+            <h1 className="text-center">
+              Disclaimer: This avatar is powered by AI and may produce errors,
+              inaccuracies, or hallucinations. Please verify its responses
+              independently and remember it is not a human but an AI capable of
+              mistakes. Use the information provided responsibly.
+            </h1>
             {children}
           </main>
         </Providers>
