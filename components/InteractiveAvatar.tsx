@@ -110,27 +110,46 @@ export default function InteractiveAvatar() {
       });
 
       setData(res);
-      // default to voice mode
-      await avatar.current?.startVoiceChat({
-        useSilencePrompt: false
-      });
-      setChatMode("voice_mode");
+      // // default to voice mode
+      // await avatar.current?.startVoiceChat({
+      //   useSilencePrompt: false
+      // });
+      setChatMode("text_mode");
     } catch (error) {
       console.error("Error starting avatar session:", error);
     } finally {
       setIsLoadingSession(false);
     }
   }
+
   async function handleSpeak() {
-    setIsLoadingRepeat(true);
+    // setIsLoadingRepeat(true);
     if (!avatar.current) {
       setDebug("Avatar API not initialized");
 
       return;
     }
-    // speak({ text: text, task_type: TaskType.REPEAT })
+    const response = await fetch("/api/text-processing", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ prompt: text }),
+    });
+
+    if (!response.ok) {
+      throw new Error("Failed to fetch GPT response");
+    }
+
+    const data = await response.json();
+    const llmResponse = data.answer || "Sorry, I didn’t catch that.";
+
     await avatar.current
-      .speak({ text: text, taskType: TaskType.REPEAT, taskMode: TaskMode.SYNC })
+      .speak({
+        text: llmResponse,
+        taskType: TaskType.REPEAT,
+        taskMode: TaskMode.SYNC,
+      })
       .catch((e) => {
         setDebug(e.message);
       });
@@ -307,7 +326,7 @@ export default function InteractiveAvatar() {
                 input={text}
                 label="Chat"
                 loading={isLoadingRepeat}
-                placeholder="Type something for the avatar to respond"
+                placeholder="Type a question for the TA to respond"
                 setInput={setText}
                 onSubmit={handleSpeak}
               />
