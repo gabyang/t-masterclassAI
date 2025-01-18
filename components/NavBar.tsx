@@ -7,60 +7,36 @@ import {
   NavbarContent,
   NavbarItem,
 } from "@nextui-org/react";
-import { GithubIcon, HeyGenLogo } from "./Icons";
+
+import { GithubIcon } from "./Icons";
 import { ThemeSwitch } from "./ThemeSwitch";
 
 export default function NavBar() {
   return (
     <Navbar className="w-full">
       <NavbarBrand>
-        <Link isExternal aria-label="HeyGen" href="https://app.heygen.com/">
-          <HeyGenLogo />
-        </Link>
+        <Link isExternal aria-label="HeyGen" href="https://app.heygen.com/" />
         <div className="bg-gradient-to-br from-sky-300 to-indigo-500 bg-clip-text ml-4">
           <p className="text-xl font-semibold text-transparent">
-            HeyGen Interactive Avatar SDK NextJS Demo
+            Masterclass.ai
           </p>
         </div>
       </NavbarBrand>
       <NavbarContent justify="center">
         <NavbarItem className="flex flex-row items-center gap-4">
-          <Link
-            isExternal
-            color="foreground"
-            href="https://labs.heygen.com/interactive-avatar"
-          >
-            Avatars
+          <Link isExternal color="foreground" href="https://canvas.nus.edu.sg/">
+            Canvas
           </Link>
           <Link
             isExternal
             color="foreground"
-            href="https://docs.heygen.com/reference/list-voices-v2"
+            href="https://nusmods.com/timetable/sem-2"
           >
-            Voices
+            Class Schedule
           </Link>
-          <Link
-            isExternal
-            color="foreground"
-            href="https://docs.heygen.com/reference/new-session-copy"
-          >
-            API Docs
-          </Link>
-          <Link
-            isExternal
-            color="foreground"
-            href="https://help.heygen.com/en/articles/9182113-interactive-avatar-101-your-ultimate-guide"
-          >
-            Guide
-          </Link>
-          <Link
-            isExternal
-            aria-label="Github"
-            href="https://github.com/HeyGen-Official/StreamingAvatarSDK"
-            className="flex flex-row justify-center gap-1 text-foreground"
-          >
+          <Link isExternal color="foreground" href="https://github.com/">
             <GithubIcon className="text-default-500" />
-            SDK
+            Github
           </Link>
           <ThemeSwitch />
         </NavbarItem>

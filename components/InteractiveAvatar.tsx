@@ -2,7 +2,10 @@ import type { StartAvatarResponse } from "@heygen/streaming-avatar";
 
 import StreamingAvatar, {
   AvatarQuality,
-  StreamingEvents, TaskMode, TaskType, VoiceEmotion,
+  StreamingEvents,
+  TaskMode,
+  TaskType,
+  VoiceEmotion,
 } from "@heygen/streaming-avatar";
 import {
   Button,
@@ -23,7 +26,7 @@ import { useMemoizedFn, usePrevious } from "ahooks";
 
 import InteractiveAvatarTextInput from "./InteractiveAvatarTextInput";
 
-import {AVATARS, STT_LANGUAGE_LIST} from "@/app/lib/constants";
+import { AVATARS, STT_LANGUAGE_LIST } from "@/app/lib/constants";
 
 export default function InteractiveAvatar() {
   const [isLoadingSession, setIsLoadingSession] = useState(false);
@@ -126,9 +129,11 @@ export default function InteractiveAvatar() {
       return;
     }
     // speak({ text: text, task_type: TaskType.REPEAT })
-    await avatar.current.speak({ text: text, taskType: TaskType.REPEAT, taskMode: TaskMode.SYNC }).catch((e) => {
-      setDebug(e.message);
-    });
+    await avatar.current
+      .speak({ text: text, taskType: TaskType.REPEAT, taskMode: TaskMode.SYNC })
+      .catch((e) => {
+        setDebug(e.message);
+      });
     setIsLoadingRepeat(false);
   }
   async function handleInterrupt() {
@@ -137,11 +142,9 @@ export default function InteractiveAvatar() {
 
       return;
     }
-    await avatar.current
-      .interrupt()
-      .catch((e) => {
-        setDebug(e.message);
-      });
+    await avatar.current.interrupt().catch((e) => {
+      setDebug(e.message);
+    });
   }
   async function endSession() {
     await avatar.current?.stopAvatar();
@@ -161,6 +164,7 @@ export default function InteractiveAvatar() {
   });
 
   const previousText = usePrevious(text);
+
   useEffect(() => {
     if (!previousText && text) {
       avatar.current?.startListening();
@@ -267,9 +271,7 @@ export default function InteractiveAvatar() {
                   }}
                 >
                   {STT_LANGUAGE_LIST.map((lang) => (
-                    <SelectItem key={lang.key}>
-                      {lang.label}
-                    </SelectItem>
+                    <SelectItem key={lang.key}>{lang.label}</SelectItem>
                   ))}
                 </Select>
               </div>
@@ -316,8 +318,8 @@ export default function InteractiveAvatar() {
           ) : (
             <div className="w-full text-center">
               <Button
-                isDisabled={!isUserTalking}
                 className="bg-gradient-to-tr from-indigo-500 to-indigo-300 text-white"
+                isDisabled={!isUserTalking}
                 size="md"
                 variant="shadow"
               >

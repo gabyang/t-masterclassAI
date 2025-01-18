@@ -40,13 +40,13 @@ export default function InteractiveAvatarTextInput({
             {loading ? (
               <Spinner
                 className="text-indigo-300 hover:text-indigo-200"
-                size="sm"
                 color="default"
+                size="sm"
               />
             ) : (
               <button
-                type="submit"
                 className="focus:outline-none"
+                type="submit"
                 onClick={handleSubmit}
               >
                 <PaperPlaneRight
@@ -61,6 +61,7 @@ export default function InteractiveAvatarTextInput({
           </Tooltip>
         </div>
       }
+      isDisabled={disabled}
       label={label}
       placeholder={placeholder}
       size="sm"
@@ -71,7 +72,6 @@ export default function InteractiveAvatarTextInput({
         }
       }}
       onValueChange={setInput}
-      isDisabled={disabled}
     />
   );
 }
