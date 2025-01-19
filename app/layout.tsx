@@ -61,8 +61,12 @@ export default function RootLayout({
               This demonstration showcases content from &quot;Structure and
               Interpretation of Computer Programs,&quot; a textbook employed in
               CS1101S at the NUS. This course serves as an introductory computer
-              science class for first-year students. The teaching assistant (TA)
-              mentioned here instructs this particular subject.
+              science class for first-year students. This application and AI
+              avatar is purely for demonstration purposes for the hackathon
+              HankNRoll and by no means will it be used for any other purposes
+              other than this. The AI avatar is modelled after a fictional
+              character &quot;Hartin Menz&quot; from Source Academy and any
+              resemblance to real life people are coincidental.
             </h1>
           </main>
         </Providers>
